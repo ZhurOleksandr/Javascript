@@ -1,0 +1,205 @@
+script.js:15 
+Завдання 2 (while цикл)
+script.js:21 Число: 1, сума: 1
+script.js:21 Число: 2, сума: 3
+script.js:21 Число: 3, сума: 6
+script.js:21 Число: 4, сума: 10
+script.js:21 Число: 5, сума: 15
+script.js:21 Число: 6, сума: 21
+script.js:21 Число: 7, сума: 28
+script.js:21 Число: 8, сума: 36
+script.js:21 Число: 9, сума: 45
+script.js:21 Число: 10, сума: 55
+script.js:21 Число: 11, сума: 66
+script.js:21 Число: 12, сума: 78
+script.js:21 Число: 13, сума: 91
+script.js:21 Число: 14, сума: 105
+script.js:21 Число: 15, сума: 120
+script.js:21 Число: 16, сума: 136
+script.js:21 Число: 17, сума: 153
+script.js:21 Число: 18, сума: 171
+script.js:21 Число: 19, сума: 190
+script.js:21 Число: 20, сума: 210
+script.js:21 Число: 21, сума: 231
+script.js:21 Число: 22, сума: 253
+script.js:21 Число: 23, сума: 276
+script.js:21 Число: 24, сума: 300
+script.js:21 Число: 25, сума: 325
+script.js:21 Число: 26, сума: 351
+script.js:21 Число: 27, сума: 378
+script.js:21 Число: 28, сума: 406
+script.js:21 Число: 29, сума: 435
+script.js:21 Число: 30, сума: 465
+script.js:21 Число: 31, сума: 496
+script.js:21 Число: 32, сума: 528
+script.js:21 Число: 33, сума: 561
+script.js:21 Число: 34, сума: 595
+script.js:21 Число: 35, сума: 630
+script.js:21 Число: 36, сума: 666
+script.js:21 Число: 37, сума: 703
+script.js:21 Число: 38, сума: 741
+script.js:21 Число: 39, сума: 780
+script.js:21 Число: 40, сума: 820
+script.js:21 Число: 41, сума: 861
+script.js:21 Число: 42, сума: 903
+script.js:21 Число: 43, сума: 946
+script.js:21 Число: 44, сума: 990
+script.js:21 Число: 45, сума: 1035
+script.js:21 Число: 46, сума: 1081
+script.js:21 Число: 47, сума: 1128
+script.js:21 Число: 48, сума: 1176
+script.js:21 Число: 49, сума: 1225
+script.js:21 Число: 50, сума: 1275
+script.js:21 Число: 51, сума: 1326
+script.js:21 Число: 52, сума: 1378
+script.js:21 Число: 53, сума: 1431
+script.js:21 Число: 54, сума: 1485
+script.js:21 Число: 55, сума: 1540
+script.js:21 Число: 56, сума: 1596
+script.js:21 Число: 57, сума: 1653
+script.js:21 Число: 58, сума: 1711
+script.js:21 Число: 59, сума: 1770
+script.js:21 Число: 60, сума: 1830
+script.js:21 Число: 61, сума: 1891
+script.js:21 Число: 62, сума: 1953
+script.js:21 Число: 63, сума: 2016
+script.js:21 Число: 64, сума: 2080
+script.js:21 Число: 65, сума: 2145
+script.js:21 Число: 66, сума: 2211
+script.js:21 Число: 67, сума: 2278
+script.js:21 Число: 68, сума: 2346
+script.js:21 Число: 69, сума: 2415
+script.js:21 Число: 70, сума: 2485
+script.js:21 Число: 71, сума: 2556
+script.js:21 Число: 72, сума: 2628
+script.js:21 Число: 73, сума: 2701
+script.js:21 Число: 74, сума: 2775
+script.js:21 Число: 75, сума: 2850
+script.js:21 Число: 76, сума: 2926
+script.js:21 Число: 77, сума: 3003
+script.js:21 Число: 78, сума: 3081
+script.js:21 Число: 79, сума: 3160
+script.js:21 Число: 80, сума: 3240
+script.js:21 Число: 81, сума: 3321
+script.js:21 Число: 82, сума: 3403
+script.js:21 Число: 83, сума: 3486
+script.js:21 Число: 84, сума: 3570
+script.js:21 Число: 85, сума: 3655
+script.js:21 Число: 86, сума: 3741
+script.js:21 Число: 87, сума: 3828
+script.js:21 Число: 88, сума: 3916
+script.js:21 Число: 89, сума: 4005
+script.js:21 Число: 90, сума: 4095
+script.js:21 Число: 91, сума: 4186
+script.js:21 Число: 92, сума: 4278
+script.js:21 Число: 93, сума: 4371
+script.js:21 Число: 94, сума: 4465
+script.js:21 Число: 95, сума: 4560
+script.js:21 Число: 96, сума: 4656
+script.js:21 Число: 97, сума: 4753
+script.js:21 Число: 98, сума: 4851
+script.js:21 Число: 99, сума: 4950
+script.js:21 Число: 100, сума: 5050
+script.js:25 Загальна сума: 5050 (формула: n*(n+1)/2 = 5050)
+script.js:30 
+Завдання 3 (do-while)
+script.js:33 1
+script.js:33 2
+script.js:33 3
+script.js:33 4
+script.js:33 5
+script.js:33 6
+script.js:33 7
+script.js:33 8
+script.js:33 9
+script.js:33 10
+script.js:33 11
+script.js:33 12
+script.js:33 13
+script.js:33 14
+script.js:33 15
+script.js:33 16
+script.js:33 17
+script.js:33 18
+script.js:33 19
+script.js:33 20
+script.js:33 21
+script.js:33 22
+script.js:33 23
+script.js:33 24
+script.js:33 25
+script.js:33 26
+script.js:33 27
+script.js:33 28
+script.js:33 29
+script.js:33 30
+script.js:33 31
+script.js:33 32
+script.js:33 33
+script.js:33 34
+script.js:33 35
+script.js:33 36
+script.js:33 37
+script.js:33 38
+script.js:33 39
+script.js:33 40
+script.js:33 41
+script.js:33 42
+script.js:33 43
+script.js:33 44
+script.js:33 45
+script.js:33 46
+script.js:33 47
+script.js:33 48
+script.js:33 49
+script.js:33 50
+script.js:33 51
+script.js:33 52
+script.js:33 53
+script.js:33 54
+script.js:33 55
+script.js:33 56
+script.js:33 57
+script.js:33 58
+script.js:33 59
+script.js:33 60
+script.js:33 61
+script.js:33 62
+script.js:33 63
+script.js:33 64
+script.js:33 65
+script.js:33 66
+script.js:33 67
+script.js:33 68
+script.js:33 69
+script.js:33 70
+script.js:33 71
+script.js:33 72
+script.js:33 73
+script.js:33 74
+script.js:33 75
+script.js:33 76
+script.js:33 77
+script.js:33 78
+script.js:33 79
+script.js:33 80
+script.js:33 81
+script.js:33 82
+script.js:33 83
+script.js:33 84
+script.js:33 85
+script.js:33 86
+script.js:33 87
+script.js:33 88
+script.js:33 89
+script.js:33 90
+script.js:33 91
+script.js:33 92
+script.js:33 93
+script.js:33 94
+script.js:33 95
+script.js:33 96
+script.js:33 97
+script.js:33 98
+script.js:33 99
+script.js:33 100
