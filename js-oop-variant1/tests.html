@@ -1,0 +1,120 @@
+﻿<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Тести — Практична робота 11</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; }
+    .pass { color: green; }
+    .fail { color: red; }
+    li { margin-bottom: 6px; }
+    pre { background: #f7f7f7; padding: 12px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Unit тести</h1>
+  <button id="runBtn">Запустити тести</button>
+  <ul id="results"></ul>
+  <pre id="summary"></pre>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const results = document.getElementById('results');
+      const summary = document.getElementById('summary');
+      const runBtn = document.getElementById('runBtn');
+
+      function assert(condition, message) {
+        if (!condition) throw new Error(message);
+      }
+
+      function addResult(ok, name, message = '') {
+        const li = document.createElement('li');
+        li.className = ok ? 'pass' : 'fail';
+        li.textContent = (ok ? 'PASS: ' : 'FAIL: ') + name + (message ? ` — ${message}` : '');
+        results.appendChild(li);
+      }
+
+      function runTest(name, fn, counters) {
+        try {
+          fn();
+          counters.passed++;
+          addResult(true, name);
+        } catch (error) {
+          counters.failed++;
+          addResult(false, name, error.message);
+        }
+      }
+
+      runBtn.addEventListener('click', () => {
+        results.innerHTML = '';
+        summary.textContent = '';
+        const counters = { passed: 0, failed: 0 };
+
+        runTest('Vehicle class works', () => {
+          const v = new Vehicle('Toyota', 'Corolla', 2020, 10000, 50);
+          assert(v.getInfo().brand === 'Toyota', 'brand mismatch');
+        }, counters);
+
+        runTest('Car extends Vehicle', () => {
+          const c = new Car('Honda', 'Civic', 2021, 5000, 60, 4, 'automatic');
+          assert(c instanceof Vehicle, 'Car should extend Vehicle');
+          assert(c.doors === 4, 'doors mismatch');
+        }, counters);
+
+        runTest('Truck has load properties', () => {
+          const t = new Truck('MAN', 'TGS', 2019, 20000, 70, 10000, true);
+          assert(t instanceof Vehicle, 'Truck should extend Vehicle');
+          assert(t.isLoaded === true, 'isLoaded mismatch');
+        }, counters);
+
+        runTest('Motorcycle works', () => {
+          const m = new Motorcycle('Yamaha', 'MT-07', 2022, 3000, 40, 'sport');
+          assert(m instanceof Vehicle, 'Motorcycle should extend Vehicle');
+        }, counters);
+
+        runTest('drive updates mileage and fuel', () => {
+          const v = new Vehicle('Test', 'Model', 2020, 1000, 100);
+          v.drive(50);
+          assert(v.mileage === 1050, 'mileage not updated');
+          assert(v.fuelLevel < 100, 'fuel not reduced');
+        }, counters);
+
+        runTest('refuel increases fuel', () => {
+          const v = new Vehicle('Test', 'Model', 2020, 1000, 20);
+          v.refuel(30);
+          assert(v.fuelLevel === 50, 'fuel not increased');
+        }, counters);
+
+        runTest('Fleet add/get/remove works', () => {
+          const f = new Fleet();
+          const item = f.add(new Vehicle('A', 'B', 2020, 1, 1));
+          assert(f.getById(item.id) !== null, 'getById failed');
+          assert(f.remove(item.id) === true, 'remove failed');
+        }, counters);
+
+        runTest('Static filters work', () => {
+          const items = [
+            { id: 1, vehicle: new Vehicle('A', 'B', 2020, 100, 50) },
+            { id: 2, vehicle: new Vehicle('C', 'D', 2010, 200, 50) }
+          ];
+          assert(Vehicle.filterByYear(items.map(i => i.vehicle), 2015).length === 1, 'year filter failed');
+          assert(Vehicle.filterByMileage(items.map(i => i.vehicle), 150).length === 1, 'mileage filter failed');
+        }, counters);
+
+        runTest('Statistics calculation works', () => {
+          const f = new Fleet();
+          f.add(new Vehicle('A', 'B', 2020, 100, 50));
+          f.add(new Vehicle('C', 'D', 2021, 300, 50));
+          const s = f.getStatistics();
+          assert(s.count === 2, 'count mismatch');
+          assert(s.averageMileage === 200, 'averageMileage mismatch');
+        }, counters);
+
+        summary.textContent = `Passed: ${counters.passed}\nFailed: ${counters.failed}`;
+      });
+    });
+  </script>
+</body>
+</html>

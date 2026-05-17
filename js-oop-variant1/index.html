@@ -1,0 +1,128 @@
+﻿<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Практична робота 11 — Класи та ООП</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; line-height: 1.5; }
+    section { margin-bottom: 20px; padding: 16px; border: 1px solid #ddd; border-radius: 10px; }
+    label { display: block; margin-top: 10px; margin-bottom: 4px; }
+    input, select, button { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }
+    button { cursor: pointer; margin-top: 12px; max-width: 220px; }
+    pre { background: #f7f7f7; padding: 12px; border-radius: 8px; overflow: auto; min-height: 180px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 900px; }
+    .row { display: flex; flex-wrap: wrap; gap: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Практична робота 11: Класи та ООП</h1>
+
+  <section>
+    <h2>Додати транспорт</h2>
+    <div class="grid">
+      <div>
+        <label for="vehicleType">Тип</label>
+        <select id="vehicleType">
+          <option value="car">Car</option>
+          <option value="truck">Truck</option>
+          <option value="motorcycle">Motorcycle</option>
+        </select>
+      </div>
+      <div>
+        <label for="brand">Brand</label>
+        <input id="brand" type="text" value="Toyota" />
+      </div>
+      <div>
+        <label for="model">Model</label>
+        <input id="model" type="text" value="Corolla" />
+      </div>
+      <div>
+        <label for="year">Year</label>
+        <input id="year" type="number" value="2020" />
+      </div>
+      <div>
+        <label for="mileage">Mileage</label>
+        <input id="mileage" type="number" value="15000" />
+      </div>
+      <div>
+        <label for="fuelLevel">Fuel Level</label>
+        <input id="fuelLevel" type="number" value="60" />
+      </div>
+    </div>
+
+    <div class="grid">
+      <div>
+        <label for="extra1">Door / Load / Type</label>
+        <input id="extra1" type="text" value="4" />
+      </div>
+      <div>
+        <label for="extra2">Transmission / Loaded / Type</label>
+        <input id="extra2" type="text" value="automatic" />
+      </div>
+    </div>
+
+    <button id="addBtn">Додати транспорт</button>
+  </section>
+
+  <section>
+    <h2>Керування автопарком</h2>
+    <div class="row">
+      <button id="driveBtn">Drive selected</button>
+      <button id="refuelBtn">Refuel selected</button>
+      <button id="maintenanceBtn">Maintenance selected</button>
+      <button id="deleteBtn">Delete selected</button>
+    </div>
+
+    <label for="fleetSelect">Вибір транспорту</label>
+    <select id="fleetSelect"></select>
+
+    <div class="grid" style="margin-top: 12px;">
+      <div>
+        <label for="driveDistance">Distance</label>
+        <input id="driveDistance" type="number" value="100" />
+      </div>
+      <div>
+        <label for="refuelAmount">Refuel Amount</label>
+        <input id="refuelAmount" type="number" value="20" />
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Фільтрація та статистика</h2>
+    <div class="grid">
+      <div>
+        <label for="filterType">Filter by type</label>
+        <select id="filterType">
+          <option value="all">all</option>
+          <option value="Car">Car</option>
+          <option value="Truck">Truck</option>
+          <option value="Motorcycle">Motorcycle</option>
+        </select>
+      </div>
+      <div>
+        <label for="filterYear">Min year</label>
+        <input id="filterYear" type="number" value="2015" />
+      </div>
+      <div>
+        <label for="filterMileage">Max mileage</label>
+        <input id="filterMileage" type="number" value="50000" />
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 12px;">
+      <button id="applyFilterBtn">Apply filter</button>
+      <button id="statsBtn">Show statistics</button>
+      <button id="showAllBtn">Show all</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Результат</h2>
+    <pre id="output">Готово до роботи.</pre>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
