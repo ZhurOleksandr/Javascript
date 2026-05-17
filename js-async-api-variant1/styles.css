@@ -1,0 +1,146 @@
+:root {
+  --bg: #FFF;
+  --panel: #e6edf3;
+  --text: #000;
+  --accent: #58a6ff;
+  --danger: #ff7b72;
+  --border: #e6edf3;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.search-card, .panel, .error, .loading {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 18px;
+}
+
+.search-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+input, select, button {
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #FFFFFF;
+  color: var(--text);
+  padding: 10px 12px;
+}
+
+input, select {
+  min-width: 220px;
+}
+
+button {
+  cursor: pointer;
+  background: var(--accent);
+  color: #081120;
+  font-weight: bold;
+}
+
+.controls {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hidden { display: none; }
+
+.loading {
+  text-align: center;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 4px solid rgba(255,255,255,0.2);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error {
+  color: var(--danger);
+  border-color: rgba(255, 123, 114, 0.4);
+}
+
+.profile {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.profile img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+}
+
+.stats {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.repos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.repo-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  background: #9da7b3;
+  color: FFFFFF;
+}
+
+.repo-card h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.repo-meta {
+  color: FFFFFF;
+  font-size: 0.95rem;
+  display: grid;
+  gap: 4px;
+}
+
+.repo-card button {
+  margin-top: 12px;
+}

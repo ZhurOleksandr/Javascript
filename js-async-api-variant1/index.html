@@ -1,0 +1,67 @@
+﻿<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Практична робота 10.2 — GitHub User Explorer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>GitHub User Explorer</h1>
+    </header>
+
+    <section class="search-card">
+      <label for="username">GitHub username</label>
+      <div class="search-row">
+        <input id="username" type="text" value="agent-skills" placeholder="наприклад: agent-skills" />
+        <button id="searchBtn">Search</button>
+      </div>
+      <div class="controls">
+        <label for="sortRepos">Sort repos</label>
+        <select id="sortRepos">
+          <option value="stars">stars</option>
+          <option value="forks">forks</option>
+          <option value="updated">updated</option>
+        </select>
+      </div>
+    </section>
+
+    <section id="loading" class="loading hidden">
+      <div class="spinner"></div>
+      <p>Loading...</p>
+    </section>
+
+    <section id="errorBox" class="error hidden"></section>
+
+    <section id="profileSection" class="panel hidden">
+      <div class="profile">
+        <img id="avatar" alt="avatar" />
+        <div>
+          <h2 id="name"></h2>
+          <p id="login"></p>
+          <p id="bio"></p>
+          <div class="stats">
+            <span id="followers"></span>
+            <span id="following"></span>
+            <span id="publicRepos"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reposSection" class="panel hidden">
+      <h2>Repositories</h2>
+      <div id="reposList" class="repos-grid"></div>
+    </section>
+
+    <section id="repoDetailsSection" class="panel hidden">
+      <h2>Repository details</h2>
+      <div id="repoDetails"></div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
