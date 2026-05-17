@@ -1,0 +1,106 @@
+﻿<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Тести — Практична робота 5</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; }
+    .pass { color: green; }
+    .fail { color: red; }
+    li { margin-bottom: 6px; }
+    pre { background: #f7f7f7; padding: 12px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Unit тести</h1>
+  <ul id="results"></ul>
+  <pre id="summary"></pre>
+  <script src="app.js"></script>
+  <script>
+    const results = document.getElementById('results');
+    const summary = document.getElementById('summary');
+    let passed = 0;
+    let failed = 0;
+
+    function test(name, fn) {
+      try {
+        fn();
+        passed++;
+        const li = document.createElement('li');
+        li.className = 'pass';
+        li.textContent = 'PASS: ' + name;
+        results.appendChild(li);
+      } catch (error) {
+        failed++;
+        const li = document.createElement('li');
+        li.className = 'fail';
+        li.textContent = 'FAIL: ' + name + ' — ' + error.message;
+        results.appendChild(li);
+      }
+    }
+
+    function assert(condition, message) {
+      if (!condition) throw new Error(message);
+    }
+
+    const manager = createUserManager();
+
+    test('email validation works', () => {
+      assert(isValidEmail('a@b.com') === true, 'valid email should pass');
+      assert(isValidEmail('bad-email') === false, 'invalid email should fail');
+    });
+
+    test('createUser creates user with methods', () => {
+      const user = createUser({ id: 1, name: 'Ivan', email: 'ivan@example.com', role: 'user' });
+      assert(user.id === 1, 'id mismatch');
+      assert(typeof user.getInfo === 'function', 'getInfo missing');
+      assert(typeof user.updateProfile === 'function', 'updateProfile missing');
+      assert(typeof user.isAdmin === 'function', 'isAdmin missing');
+    });
+
+    test('isAdmin returns correct value', () => {
+      const admin = createUser({ id: 2, name: 'Admin', email: 'admin@example.com', role: 'admin' });
+      assert(admin.isAdmin() === true, 'admin should be true');
+    });
+
+    test('manager create/get user', () => {
+      const user = manager.createUser({ name: 'Kate', email: 'kate@example.com', role: 'user' });
+      const found = manager.getUser(user.id);
+      assert(found.name === 'Kate', 'user not found');
+    });
+
+    test('updateUser updates data immutably', () => {
+      const user = manager.createUser({ name: 'Mark', email: 'mark@example.com', role: 'user' });
+      const updated = manager.updateUser(user.id, { role: 'admin' });
+      assert(updated.role === 'admin', 'role not updated');
+      assert(manager.getUser(user.id).role === 'admin', 'stored role not updated');
+    });
+
+    test('deleteUser removes user', () => {
+      const user = manager.createUser({ name: 'Olha', email: 'olha@example.com', role: 'user' });
+      assert(manager.deleteUser(user.id) === true, 'delete should return true');
+      assert(manager.getUser(user.id) === null, 'user should be removed');
+    });
+
+    test('getUsersByRole filters correctly', () => {
+      manager.createUser({ name: 'A1', email: 'a1@example.com', role: 'admin' });
+      manager.createUser({ name: 'U1', email: 'u1@example.com', role: 'user' });
+      const admins = manager.getUsersByRole('admin');
+      assert(admins.every(user => user.role === 'admin'), 'filter broken');
+    });
+
+    test('validation throws errors', () => {
+      let errorCaught = false;
+      try {
+        manager.createUser({ name: 'Bad', email: 'bad-email', role: 'user' });
+      } catch (error) {
+        errorCaught = true;
+      }
+      assert(errorCaught, 'error should be thrown');
+    });
+
+    summary.textContent = `Passed: ${passed}\nFailed: ${failed}`;
+  </script>
+</body>
+</html>
