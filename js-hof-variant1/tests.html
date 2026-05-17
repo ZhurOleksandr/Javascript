@@ -1,0 +1,112 @@
+﻿<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Тести — Практична робота 8</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; }
+    .pass { color: green; }
+    .fail { color: red; }
+    li { margin-bottom: 6px; }
+    pre { background: #f7f7f7; padding: 12px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Unit тести</h1>
+  <ul id="results"></ul>
+  <pre id="summary"></pre>
+
+  <script src="app.js"></script>
+  <script>
+    const results = document.getElementById('results');
+    const summary = document.getElementById('summary');
+    let passed = 0;
+    let failed = 0;
+
+    function test(name, fn) {
+      try {
+        fn();
+        passed++;
+        const li = document.createElement('li');
+        li.className = 'pass';
+        li.textContent = 'PASS: ' + name;
+        results.appendChild(li);
+      } catch (error) {
+        failed++;
+        const li = document.createElement('li');
+        li.className = 'fail';
+        li.textContent = 'FAIL: ' + name + ' — ' + error.message;
+        results.appendChild(li);
+      }
+    }
+
+    function assert(condition, message) {
+      if (!condition) throw new Error(message);
+    }
+
+    test('myMap works', () => {
+      const result = myMap([1, 2, 3], n => n * 2);
+      assert(JSON.stringify(result) === JSON.stringify([2, 4, 6]), 'map failed');
+    });
+
+    test('myFilter works', () => {
+      const result = myFilter([1, 2, 3, 4], n => n % 2 === 0);
+      assert(JSON.stringify(result) === JSON.stringify([2, 4]), 'filter failed');
+    });
+
+    test('myReduce works', () => {
+      const result = myReduce([1, 2, 3], (acc, n) => acc + n, 0);
+      assert(result === 6, 'reduce failed');
+    });
+
+    test('pipe works', () => {
+      const fn = pipe(x => x + 1, x => x * 2);
+      assert(fn(3) === 8, 'pipe failed');
+    });
+
+    test('compose works', () => {
+      const fn = compose(x => x * 2, x => x + 1);
+      assert(fn(3) === 8, 'compose failed');
+    });
+
+    test('curry works', () => {
+      const sum3 = (a, b, c) => a + b + c;
+      const curried = curry(sum3);
+      assert(curried(1)(2)(3) === 6, 'curry failed');
+    });
+
+    test('partial works', () => {
+      const add = (a, b, c) => a + b + c;
+      const addOneTwo = partial(add, 1, 2);
+      assert(addOneTwo(3) === 6, 'partial failed');
+    });
+
+    test('memoize works', () => {
+      let count = 0;
+      const fn = memoize(x => {
+        count++;
+        return x * 10;
+      });
+      assert(fn(5) === 50, 'first call failed');
+      assert(fn(5) === 50, 'second call failed');
+      assert(count === 1, 'memoize did not cache');
+    });
+
+    test('chainable API works', () => {
+      const result = chain([1, 2, 3, 4])
+        .map(n => n * 2)
+        .filter(n => n > 4)
+        .value();
+      assert(JSON.stringify(result) === JSON.stringify([6, 8]), 'chain failed');
+    });
+
+    test('works with strings', () => {
+      const result = myMap(['a', 'b'], s => s.toUpperCase());
+      assert(JSON.stringify(result) === JSON.stringify(['A', 'B']), 'string handling failed');
+    });
+
+    summary.textContent = `Passed: ${passed}\nFailed: ${failed}`;
+  </script>
+</body>
+</html>
