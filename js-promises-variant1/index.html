@@ -1,0 +1,43 @@
+﻿<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Практична робота 10.1 — Promises</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; line-height: 1.5; }
+    section { margin-bottom: 20px; padding: 16px; border: 1px solid #ddd; border-radius: 10px; }
+    label { display: block; margin-top: 10px; margin-bottom: 4px; }
+    input, button { padding: 8px; width: 100%; max-width: 360px; box-sizing: border-box; }
+    button { cursor: pointer; margin-top: 12px; max-width: 220px; }
+    pre { background: #f7f7f7; padding: 12px; border-radius: 8px; overflow: auto; min-height: 180px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 760px; }
+  </style>
+</head>
+<body>
+  <h1>Практична робота 10.1: Promises та ланцюжки промісів</h1>
+
+  <section>
+    <h2>Створити замовлення</h2>
+    <div class="row">
+      <div>
+        <label for="orderId">Order ID</label>
+        <input id="orderId" type="text" value="ORD-1001" />
+      </div>
+      <div>
+        <label for="amount">Amount</label>
+        <input id="amount" type="number" value="350" min="1" />
+      </div>
+    </div>
+    <button id="startBtn">Запустити обробку</button>
+    <button id="sampleBtn">Створити тестове замовлення</button>
+  </section>
+
+  <section>
+    <h2>Лог</h2>
+    <pre id="log">Очікування запуску...</pre>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>

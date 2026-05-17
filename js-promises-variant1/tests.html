@@ -1,0 +1,95 @@
+﻿<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Тести — Практична робота 10.1</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; }
+    .pass { color: green; }
+    .fail { color: red; }
+    li { margin-bottom: 6px; }
+    pre { background: #f7f7f7; padding: 12px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Browser unit tests</h1>
+  <button id="runBtn">Запустити тести</button>
+  <ul id="results"></ul>
+  <pre id="summary"></pre>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const results = document.getElementById('results');
+      const summary = document.getElementById('summary');
+      const runBtn = document.getElementById('runBtn');
+
+      function assert(condition, message) {
+        if (!condition) throw new Error(message);
+      }
+
+      function addResult(ok, name, message = '') {
+        const li = document.createElement('li');
+        li.className = ok ? 'pass' : 'fail';
+        li.textContent = (ok ? 'PASS: ' : 'FAIL: ') + name + (message ? ` — ${message}` : '');
+        results.appendChild(li);
+      }
+
+      function runTest(name, fn, counters) {
+        try {
+          fn();
+          counters.passed++;
+          addResult(true, name);
+        } catch (error) {
+          counters.failed++;
+          addResult(false, name, error.message);
+        }
+      }
+
+      function resetUI() {
+        results.innerHTML = '';
+        summary.textContent = '';
+      }
+
+      runBtn.addEventListener('click', () => {
+        resetUI();
+        const counters = { passed: 0, failed: 0 };
+
+        runTest('validateOrder accepts valid input', () => {
+          const order = validateOrder({ orderId: 'ORD-1', amount: 100 });
+          assert(order.orderId === 'ORD-1', 'invalid orderId');
+        }, counters);
+
+        runTest('validateOrder rejects invalid amount', () => {
+          let errorCaught = false;
+          try {
+            validateOrder({ orderId: 'ORD-1', amount: 0 });
+          } catch (error) {
+            errorCaught = true;
+          }
+          assert(errorCaught, 'should throw error');
+        }, counters);
+
+        runTest('Promise functions return Promise objects', () => {
+          const a = checkAvailability('ORD-1');
+          const b = reserveItems('ORD-1');
+          const c = processPayment('ORD-1', 100);
+          const d = scheduleDelivery('ORD-1');
+          assert(a instanceof Promise, 'checkAvailability is not Promise');
+          assert(b instanceof Promise, 'reserveItems is not Promise');
+          assert(c instanceof Promise, 'processPayment is not Promise');
+          assert(d instanceof Promise, 'scheduleDelivery is not Promise');
+        }, counters);
+
+        runTest('processOrder returns Promise', () => {
+          const p = processOrder({ orderId: 'ORD-2', amount: 200 });
+          assert(p instanceof Promise, 'processOrder is not Promise');
+        }, counters);
+
+        summary.textContent = `Passed: ${counters.passed}\nFailed: ${counters.failed}\n\nNote: async stages can fail randomly by design (20% chance).`;
+      });
+    });
+  </script>
+</body>
+</html>
